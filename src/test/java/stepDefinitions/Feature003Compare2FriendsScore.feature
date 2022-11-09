@@ -1,10 +1,13 @@
-@tag
 Feature: Compare two users' playlists
   ajouter des chansons dans les playlists de deux utilisateurs et comparer leurs scores.
 
-  @tag1
   Scenario Outline: Compare two users' playlists
-    Given deux utilisateurs
-    And trois chansons
-    When deux utilisateurs ajoutent les chansons qu'ils aiment
-    Then l'utilisateur avec le score le plus haut gagne
+    Given two users : <friendName1>, <friendName2>
+    And three songs : (<songName1>, <score1>), (<songName2>, <score2>), (<songName3>, <score3>) are added to the playlists
+    When a user compares himself to another user
+    Then the user with the highest score is returned
+    
+    Examples:
+    | friendName1	| friendName2	| songName1	| score1	|  songName2	| score2	| songName3		| score3 		|
+    | Nicolas 		| Alexy 			|	djadja 		| 1 			| test 				| 3				| test				| 3					|
+    | Alexy 			| Sylvain		  | test 			| 3				|	test2				| 5 			| test3				| 3					|

@@ -34,6 +34,8 @@ class TestPlaylist {
      */
     @AfterEach
     public void tearDown() {
+    	playlist = null;
+    	djadja = null;
     }
 
     @Test
@@ -45,6 +47,12 @@ class TestPlaylist {
     public void testGetScore() {
         playlist.addSong(djadja);
         assertEquals(1, playlist.getScore());
+    }
+    
+    @Test
+    public void testGetScoreOfSong() {
+        playlist.addSong(djadja);
+        assertEquals(1, playlist.getScoreOfASong("djadja"));
     }
     
     @Test

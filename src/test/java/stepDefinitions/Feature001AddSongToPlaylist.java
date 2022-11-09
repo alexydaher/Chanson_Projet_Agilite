@@ -8,25 +8,27 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class Feature001AddSongToPlaylist {
-	private Song song = new Song("djadja", 1);
-	private Friend friend = new Friend("Nicolas");
+	private Song song; 
+	private Friend friend;
 	
-	@Given("une chanson")
-	public void createChanson() {
-		Assert.assertTrue(this.song != null);
-	}
-	
-	@Given("un utilisateur")
-	public void createUtilisateur() {
+	@Given("^a user : (.*)$")
+	public void createUtilisateur(String friendName) {
+		friend = new Friend(friendName);
 		Assert.assertTrue(this.friend != null);
 	}
 	
-	@When("un utilisateur ajoute une chanson dans sa playlist")
+	@Given("^a song (.*) with a score (\\d+)$")
+	public void createChanson(String songName, int score) {
+		song = new Song(songName, score);
+		Assert.assertTrue(this.song != null);
+	}
+	
+	@When("^the user adds the song in his playlist$")
 	public void addSongToPlaylist() {
 		this.friend.addSong(song);
 	}
 	
-	@Then("la playlist contient cette chanson")
+	@Then("^the playlist contains the song$")
 	public void checkPlaylist() {
 		Assert.assertEquals(this.song, this.friend.getPlaylist().getSongs().get(0));
 	}

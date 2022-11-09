@@ -1,10 +1,13 @@
-@tag
-Feature: Get Song and Playlist Score
-  avoir le bon score de la chanson ou de la playlist
+Feature: User adds song to playlist
+	A user wants to add a song to his playlist
+	
+  Scenario Outline: un utilisateur ajoute une chanson dans sa playlist
+    Given a user : <friendName>
+    And a song <songName> with a score <score>
+    When the user adds the song in his playlist
+    Then the playlist contains the song
 
-  @tag1
-  Scenario Outline: un utilisateur ch
-    Given une chanson
-    And un utilisateur
-    When un utilisateur ajoute une chanson dans sa playlist
-    Then la playlist contient cette chanson
+    Examples:
+    | friendName	| songName	| score		|
+    | Nicolas 		| djadja 		| 1 			|
+    | Alexy 			| test 			| 3				|	
